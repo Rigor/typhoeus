@@ -60,6 +60,14 @@ module Typhoeus
     # @api private
     attr_accessor :original_options
 
+    # Option for ignoring the use of Typhoeus::Pool (pool of easy handles)
+    #
+    # @return [ Boolean ]
+    #
+    # @api private
+    attr_accessor :ignore_easy_pool
+    alias :ignore_easy_pool? :ignore_easy_pool
+
     # @return [ Boolean ]
     #
     # @api private
@@ -129,7 +137,7 @@ module Typhoeus
     def url
       easy = EasyFactory.new(self).get
       url = easy.url
-      Typhoeus::Pool.release(easy)
+      Typhoeus::Pool.release(easy) unless ignore_easy_pool?
       url
     end
 

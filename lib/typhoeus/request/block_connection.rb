@@ -32,7 +32,7 @@ module Typhoeus
         end
       end
 
-      # Returns wether a request is blocked or not. Takes
+      # Returns whether a request is blocked or not. Takes
       # request.block_connection and Typhoeus::Config.block_connection
       # into consideration.
       #
